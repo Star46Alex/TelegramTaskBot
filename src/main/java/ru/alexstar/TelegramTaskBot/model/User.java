@@ -17,6 +17,8 @@ import java.util.List;
 public class User extends BaseEntity {
 
     private  String name;
+    @Column(name = "tele_user_id")
+    private long teleUserID;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_task",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

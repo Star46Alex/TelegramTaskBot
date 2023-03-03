@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class BotConfig {
     private String name;
     private String token;
+    private String admin;
 
 
 }

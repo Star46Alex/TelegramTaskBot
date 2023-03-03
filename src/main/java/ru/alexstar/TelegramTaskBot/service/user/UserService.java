@@ -1,4 +1,4 @@
-package ru.alexstar.TelegramTaskBot.service;
+package ru.alexstar.TelegramTaskBot.service.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.alexstar.TelegramTaskBot.dto.UserDto;
 import ru.alexstar.TelegramTaskBot.mapper.UserMapper;
 import ru.alexstar.TelegramTaskBot.model.User;
-import ru.alexstar.TelegramTaskBot.repository.UserRepository;
+import ru.alexstar.TelegramTaskBot.repository.user.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +18,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserDto create(String userName) {
+    public UserDto create(String userName,long teleUserId) {
         UserDto userDto = new UserDto();
         userDto.setName(userName);
+        userDto.setTeleUserID(teleUserId);
 User user =userRepository.save(userMapper.toUser(userDto));
         return userMapper.toUserDto(user);
     }

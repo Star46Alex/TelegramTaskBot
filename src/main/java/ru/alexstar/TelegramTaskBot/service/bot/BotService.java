@@ -10,8 +10,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.alexstar.TelegramTaskBot.config.telegram.BotConfig;
+import ru.alexstar.TelegramTaskBot.dto.UserDto;
 import ru.alexstar.TelegramTaskBot.mapper.UserMapper;
-import ru.alexstar.TelegramTaskBot.service.UserService;
+import ru.alexstar.TelegramTaskBot.service.user.UserService;
 
 @Slf4j
 @Getter
@@ -32,21 +33,43 @@ public class BotService extends TelegramLongPollingBot {
         return botConfig.getToken();
     }
 
+
     @Override
     public void onUpdateReceived(Update update) {
         if(update.hasMessage() && update.getMessage().hasText());
         String messageText= update.getMessage().getText();
         long chatId= update.getMessage().getChatId();
-        switch (messageText){
+        switch (messageText) {
             case "/start":
-                startCommandReceived(chatId,update.getMessage().getChat().getUserName());
-
-                userService.create(update.getMessage().getChat().getUserName());
+                startCommandReceived(chatId, update.getMessage().getChat().getUserName());
+                userService.create(update.getMessage().getChat().getUserName(),update.getMessage().getChat().getId());
 
                 break;
-            default: sendMessage(chatId,"sorry command was not recognized");
-        }
+            case "/giveTasks":
 
+
+                    default:
+                        var senderId = update.getMessage().getChatId().toString();
+                        var adminId = botConfig.getAdmin();
+                        if (senderId.equals(adminId))
+                        {
+                            for(UserDto userDto:userService.getAll()){
+                                userDto.getName();
+                               var u= userDto.getTeleUserID();
+                               if(!senderId.equals(String.valueOf(u)))
+                               {
+                                   sendMessage(u, update.getMessage().getText());
+                               }
+
+
+                            }
+
+
+                } else   {
+                            sendMessage(chatId, "sorry command was not recognized");
+
+                        }
+        }
 
     }
     private void startCommandReceived(long chatId,String name){
@@ -54,6 +77,7 @@ public class BotService extends TelegramLongPollingBot {
         sendMessage(chatId,answer);
 
     }
+
     private void sendMessage(long chatId,String textToSend){
         SendMessage message= new SendMessage();
         message.setChatId(String.valueOf(chatId));
@@ -64,4 +88,15 @@ public class BotService extends TelegramLongPollingBot {
             throw new RuntimeException(e);
         }
     }
+//    private void sendTask(long chatId,String textToSend){
+//        SendMessage message= new SendMessage();
+//        message.setChatId(String.valueOf(chatId));
+//        message.setText(textToSend);
+//        try {
+//            execute(message);
+//        } catch (TelegramApiException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
 }

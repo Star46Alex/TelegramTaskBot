@@ -6,7 +6,7 @@
 //import org.springframework.kafka.core.KafkaTemplate;
 //import org.springframework.stereotype.Service;
 //import ru.alexstar.TelegramTaskBot.model.User;
-//import ru.alexstar.TelegramTaskBot.repository.UserRepository;
+//import ru.alexstar.TelegramTaskBot.repository.user.UserRepository;
 //
 //@Slf4j
 //@Service

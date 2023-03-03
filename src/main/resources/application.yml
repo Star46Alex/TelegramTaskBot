@@ -9,7 +9,7 @@ spring:
 
   liquibase:
     enabled: true
-    drop-first: true
+    drop-first: false
     change-log: classpath:db/db-changelog-master.xml
     default-schema: public
     contexts: migrated
@@ -27,3 +27,4 @@ spring:
 bot:
   name: Eeessstbot
   token: 6001137020:AAGnSQR7Srwr16ahNJf56lWs2KPLOIvx8Jg
+  admin: 1096527924
