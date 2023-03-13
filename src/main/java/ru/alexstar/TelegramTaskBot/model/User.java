@@ -15,13 +15,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends BaseEntity {
-
-    private  String name;
+    @Column(name = "tg_name")
+    private  String tgName;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    private String division;
     @Column(name = "tele_user_id")
     private long teleUserID;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_task",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "task_id", referencedColumnName = "id")})
+    @OneToMany(mappedBy="user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "user_task",
+//            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+//            inverseJoinColumns = {@JoinColumn(name = "task_id", referencedColumnName = "id")})
     private List<Task> tasks;
 }

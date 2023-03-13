@@ -18,10 +18,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserDto create(String userName,long teleUserId) {
+    public UserDto create(String userName,long teleUserId,String division) {
         UserDto userDto = new UserDto();
-        userDto.setName(userName);
+        userDto.setTgName(userName);
         userDto.setTeleUserID(teleUserId);
+        userDto.setDivision(division);
 User user =userRepository.save(userMapper.toUser(userDto));
         return userMapper.toUserDto(user);
     }
@@ -41,5 +42,15 @@ User user =userRepository.save(userMapper.toUser(userDto));
     public UserDto getById(int id) {
         User User = userRepository.findById(id).orElseThrow(RuntimeException::new);
         return userMapper.toUserDto(User);
+    }
+    public UserDto getByTeleUserID(long id){
+        User user = userRepository.findByTeleUserID(id);
+        return userMapper.toUserDto(user);
+
+    }
+    public UserDto getByDivision(String division){
+        User user = userRepository.findByDivision(division);
+        return userMapper.toUserDto(user);
+
     }
 }

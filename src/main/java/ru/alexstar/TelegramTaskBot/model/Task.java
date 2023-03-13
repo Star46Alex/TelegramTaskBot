@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "task")
@@ -20,6 +20,14 @@ public class Task extends BaseEntity{
     private String description;
     @Column(name = "is_done")
     private Boolean isDone;
-    @ManyToMany(mappedBy = "tasks", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<User> users;
+    @Column(name = "is_taken")
+    private Boolean isTaken;
+    @Column(name = "time_of_taking", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private ZonedDateTime timeOfTaking;
+    @Column(name = "end_task_time", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private ZonedDateTime endTaskTime;
+
+    @ManyToOne ( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id",referencedColumnName = "id")
+    private User user;
 }

@@ -1,4 +1,4 @@
-package ru.alexstar.TelegramTaskBot.config.telegram;
+package ru.alexstar.TelegramTaskBot.config.webdav;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,15 +8,13 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "bot")
+@ConfigurationProperties(prefix = "webdav")
 @ConfigurationPropertiesScan
 @Setter
 @Getter
 @Slf4j
-public class BotConfig {
-    private String name;
-    private String token;
-    private long admin;
-
-
+public class WebDavConfig {
+   private String root;
+    private String user_name;
+    private String password;
 }

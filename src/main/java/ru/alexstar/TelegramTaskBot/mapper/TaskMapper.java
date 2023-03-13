@@ -8,5 +8,8 @@ import ru.alexstar.TelegramTaskBot.model.Task;
 public interface TaskMapper {
        TaskDto toTaskDto(Task task);
         Task toTask(TaskDto taskDto);
+
+
+
     }
 

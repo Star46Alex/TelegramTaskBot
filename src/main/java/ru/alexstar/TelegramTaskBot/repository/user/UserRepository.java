@@ -8,6 +8,7 @@ import ru.alexstar.TelegramTaskBot.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer>  {
-
+    User findByTeleUserID(long id);
+    User findByDivision(String division);
 
 }

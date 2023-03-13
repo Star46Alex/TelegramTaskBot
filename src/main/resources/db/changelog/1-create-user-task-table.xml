@@ -12,6 +12,18 @@
             <column name="name" type="varchar(255)">
                 ‹constraints nullable="false"/>
             </column>
+            <column name="tg_name" type="varchar(255)">
+                ‹constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+            ‹constraints nullable="false"/>
+        </column>
+            <column name="first_name" type="varchar(255)">
+                ‹constraints nullable="false"/>
+            </column>
+            <column name="division" type="varchar(255)">
+                ‹constraints nullable="false"/>
+            </column>
             <column name="tele_user_id" type="bigint">
                 ‹constraints nullable="false"/>
             </column>
@@ -22,6 +34,9 @@
             <column autoIncrement="true" name="id" type="bigint">
                 ‹constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="user_id" type="bigint">
+                ‹constraints nullable="false"/>
+            </column>
             <column name="name" type="varchar(255)">
                 ‹constraints nullable="false"/>
             </column>
@@ -29,23 +44,32 @@
                 ‹constraints nullable="false"/>
             </column>
             <column name="is_done" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet id="create_table_user_task" author="Alexstar">
-        <createTable tableName="user_task">
-            <column autoIncrement="true" name="id" type="bigint">
-                ‹constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="user_id" type="bigint">
                 ‹constraints nullable="false"/>
             </column>
-            <column name="task_id" type="bigint">
+            <column name="is_taken" type="boolean">
+                ‹constraints nullable="false"/>
+            </column>
+            <column name="time_of_taking" type="TIMESTAMP WITH TIME ZONE">
+                ‹constraints nullable="false"/>
+            </column>
+            <column name="end_task_time" type="TIMESTAMP WITH TIME ZONE">
                 ‹constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
+<!--    <changeSet id="create_table_user_task" author="Alexstar">-->
+<!--        <createTable tableName="user_task">-->
+<!--            <column autoIncrement="true" name="id" type="bigint">-->
+<!--                ‹constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="user_id" type="bigint">-->
+<!--                ‹constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="task_id" type="bigint">-->
+<!--                ‹constraints nullable="false"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
     <changeSet  id="create_sequence" author="AlexStar">
         <createSequence
                 catalogName="sequence"
